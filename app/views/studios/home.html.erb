@@ -1,0 +1,32 @@
+
+# <h1>Dance Directory</h1>
+
+# <h3>Studios:</h3>
+
+# <%= button_to "new", new_studio_path, method: "get" %>
+
+# <% @studios.each do |studio| %>
+#   <p>
+#     name: <%= studio.name %> </br>
+#     description: <%= studio.description %> </br>
+#     style: <%= studio.style %> </br>
+#     <%= button_to "edit", edit_studio_path(studio), method: "get" %>
+#     <%= button_to "delete", studio_path(studio), method: "delete", data: {
+#       turbo_method: :delete,
+#       turbo_confirm: "Are you sure?"
+#     } %>
+#   </p>
+# <% end %>
+
+<div class="container mx-auto bg-gray-100 flex flex-col items-center py-12 sm:py-24">
+  <div>
+  hello
+    <select name="dance_style" id="style">
+      <option value="all_style">Allstyles</option>
+      <option value="saab">Hip Hop</option>
+      <option value="mercedes">Contemporary</option>
+      <option value="audi">Ballet</option>
+    </select>
+  </div>
+</div>
+
