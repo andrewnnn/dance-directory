@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root "studios#index"
+  root "studios#home"
+
+  get "/results", to: "studios#results"
 
   resources :studios
 end

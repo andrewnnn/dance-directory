@@ -1,4 +1,7 @@
 class StudiosController < ApplicationController
+  def home
+  end
+  
   def index
     @studios = Studio.all
   end
@@ -40,6 +43,13 @@ class StudiosController < ApplicationController
     @studio.destroy
 
     redirect_to root_path, status: :see_other
+  end
+
+  def search
+  end
+
+  def results
+    @studios = Studio.all
   end
 
   private

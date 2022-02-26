@@ -1,32 +1,69 @@
+<!-- Masthead-->
+<header class="masthead" style="background-image: url('dance-studio.jpg');">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <h1 class="mb-5">Search dance studios around Australia!</h1>
 
-# <h1>Dance Directory</h1>
+                    <!--
+                    <%= form_with url: "/search", method: :get do |form| %>
+                        <%= form.label :query, "Search for:" %>
+                        <%= form.text_field :query %>
+                        <%= form.label :style, "Style" %>
+                        <%= form.select :style, ["Allstyles", "Hip Hop", "Ballet", "Bollywood"], {}, class: "form-select" %>
+                        <%= form.submit "Search", class: "btn btn-primary btn-lg disabled" %>
+                    <% end %>
+                    -->
 
-# <h3>Studios:</h3>
 
-# <%= button_to "new", new_studio_path, method: "get" %>
+                    <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <!-- Email address input-->
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Dance Studio" data-sb-validations="required,email" />
+                                <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                                <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                            </div>
+                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Search</button></div>
+                        </div>
+                    </form>
 
-# <% @studios.each do |studio| %>
-#   <p>
-#     name: <%= studio.name %> </br>
-#     description: <%= studio.description %> </br>
-#     style: <%= studio.style %> </br>
-#     <%= button_to "edit", edit_studio_path(studio), method: "get" %>
-#     <%= button_to "delete", studio_path(studio), method: "delete", data: {
-#       turbo_method: :delete,
-#       turbo_confirm: "Are you sure?"
-#     } %>
-#   </p>
-# <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-<div class="container mx-auto bg-gray-100 flex flex-col items-center py-12 sm:py-24">
-  <div>
-  hello
-    <select name="dance_style" id="style">
-      <option value="all_style">Allstyles</option>
-      <option value="saab">Hip Hop</option>
-      <option value="mercedes">Contemporary</option>
-      <option value="audi">Ballet</option>
-    </select>
+<% if false %>
+  <h1>Dance Directory</h1>
+
+  <h3>Studios:</h3>
+
+  <%= button_to "new", new_studio_path, method: "get" %>
+
+  <% @studios.each do |studio| %>
+    <p>
+      name: <%= studio.name %> </br>
+      description: <%= studio.description %> </br>
+      style: <%= studio.style %> </br>
+      <%= button_to "edit", edit_studio_path(studio), method: "get" %>
+      <%= button_to "delete", studio_path(studio), method: "delete", data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+    </p>
+  <% end %>
+
+  <div class="container mx-auto bg-gray-100 flex flex-col items-center py-12 sm:py-24">
+    <div>
+    hello
+      <select name="dance_style" id="style">
+        <option value="all_style">Allstyles</option>
+        <option value="saab">Hip Hop</option>
+        <option value="mercedes">Contemporary</option>
+        <option value="audi">Ballet</option>
+      </select>
+    </div>
   </div>
-</div>
-
+<% end %> 
