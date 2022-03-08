@@ -15,11 +15,12 @@ It is a website displaying various dance studios around Australia, a short descr
 - used a bootstrap template
 - devise for auth which was commented out
 
+### Dependencies:
+- postgres
+
 ### Run Instructions:
-1. Install gem dependencies :
-
-`ruby bin/bundle install`
-
-2. Run server:
-
-`ruby bin/rails server`
+1. Install gem dependencies: `ruby bin/bundle install`
+2. Setup postgres DB (create dbs with appropriate user priviledges) refer to database.yml
+3. Run migrations: `ruby bin/rails db:migrate`
+4. Seed database: `ruby bin/rails db:seed`
+5. Run server: `ruby bin/rails server`
