@@ -1,4 +1,5 @@
 # Dance Directory
+![Show Case Pic 1](https://github.com/andrewnnn/dance-directory/blob/main/public/showcase-pic1.PNG?raw=true)
 
 ### Summary
 Dance Directory a simple CRUD app I made for fun to rediscover the magic of the Ruby on Rails framework (used it ages ago in 2016 @ uni)
