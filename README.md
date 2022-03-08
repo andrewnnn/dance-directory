@@ -1,24 +1,25 @@
-# README
+# Dance Directory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Summary
+Dance Directory a simple CRUD app I made for fun to rediscover the magic of the Ruby on Rails framework (used it ages ago in 2016 @ uni)
 
-Things you may want to cover:
+It is a website displaying various dance studios around Australia, a short description and also what styles they offer. It also allows users to add reviews and their rating out of 5 stars.
 
-* Ruby version
+### Features:
+- Search
+- Auth (later disabled due to issues)
+- Rating and reviews 
 
-* System dependencies
+### Notes:
+- bootstrap 5 for styling
+- used a bootstrap template
+- devise for auth which was commented out
 
-* Configuration
+### Run Instructions:
+1. Install gem dependencies :
 
-* Database creation
+`ruby bin/bundle install`
 
-* Database initialization
+2. Run server:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`ruby bin/rails server`

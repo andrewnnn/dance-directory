@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>Results:</h3>
+
+  <div class="card-deck">
+    <div class="row">
+      <% @studios.each do |studio| %>
+        <div class="col-md-4 col-xs-6">
+          <div class="card">
+            <img src="/studio-imgs/<%= studio.id %>.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to studio.name, studio_path(studio.id) %></a></h5>
+              <p class="card-text">
+                <%= studio.description %>
+              </p>
+              <p>
+                <span class="badge bg-primary"><%= studio.city %></span>
+              </p>
+              <p>
+                <% studio.styles.each do |style| %>
+                <span class="badge bg-info"><%= style.name %></span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

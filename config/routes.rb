@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { sessions: 'users/sessions' }
   root "studios#home"
 
-  get "/results", to: "studios#results"
+  get "/search", to: "studios#search"
 
-  resources :studios
+  resources :studios do
+    resources :reviews
+  end
 end

@@ -26,10 +26,12 @@
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container">
             <%= link_to "Dance Directory", root_path, class: "navbar-brand" %>
-            <a class="btn btn-primary" href="#signup">Sign Up</a>
+            <!-- <a class="btn btn-primary" href="<%= new_user_session_path %>">Log in</a> -->
         </div>
     </nav>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
     <!-- Footer-->
     <footer class="footer bg-light">
         <div class="container">
@@ -44,7 +46,7 @@
                         <li class="list-inline-item">⋅</li>
                         <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Dance Directory 2021. All Rights Reserved.</p>
                 </div>
                 <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                     <ul class="list-inline mb-0">
@@ -64,11 +66,4 @@
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
   </body>

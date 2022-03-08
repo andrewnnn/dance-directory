@@ -10,13 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_24_133518) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_04_013725) do
+  create_table "reviews", force: :cascade do |t|
+    t.integer "stars"
+    t.text "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "studio_id", null: false
+    t.index ["studio_id"], name: "index_reviews_on_studio_id"
+  end
+
   create_table "studios", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.text "style"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "address"
+  end
+
+  create_table "studios_styles", id: false, force: :cascade do |t|
+    t.integer "studio_id", null: false
+    t.integer "style_id", null: false
+  end
+
+  create_table "styles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "reviews", "studios"
 end

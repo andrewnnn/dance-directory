@@ -1,13 +1,32 @@
 class StudiosController < ApplicationController
   def home
+    @styles = Style.all
+    @distinct_studio_cities = Studio.select('DISTINCT city')
+
+    @distinct_studio_cities.each do |c|
+      puts c.city
+    end
   end
-  
+
   def index
     @studios = Studio.all
   end
 
   def show
     @studio = Studio.find(params[:id])
+    @reviews = @studio.reviews.where.not(stars: nil)
+    @review = Review.new
+
+    if @reviews.length == 0
+      @avg_stars = 'No ratings'
+    else
+      @avg_stars = 0.0
+      @reviews.each do |r|
+        @avg_stars += r.stars
+      end
+      @avg_stars = @avg_stars / @reviews.length
+    end
+
   end
 
   def new
@@ -46,15 +65,34 @@ class StudiosController < ApplicationController
   end
 
   def search
-  end
+    puts "in search function"
+    # params[:name_query]
+    # params[:style]
+    # params[:location]
+    
+    @studios = Studio.where(["name like ?", "%#{params[:name_query]}%"])
 
-  def results
-    @studios = Studio.all
+    if params[:style] != "all"
+      @studios = @studios.where(["style = ?", params[:style]])
+    end
+
+    if params[:city] != "all"
+      @studios = @studios.where(["city = ?", params[:city]])
+    end
+
   end
 
   private
+    # def search_params
+    #   params.require(:studio).permit(:name, :description, :style)
+    # end
+
     def studio_params
       params.require(:studio).permit(:name, :description, :style)
+    end
+
+    def review_params
+      params.require(:review).permit(:stars, :detail)
     end
 
 end

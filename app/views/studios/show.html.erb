@@ -1,6 +1,98 @@
-<h1><%= @studio.name %></h1>
 
-<p>
-  Description: <%= @studio.description %> </br>
-  Style: <%= @studio.style %>
-</p>
+  <h2><%= @studio.name %></h2>
+  <%= @avg_stars %> <i id="avg-star-1" class="bi bi-star"></i><i id="avg-star-2" class="bi bi-star"></i><i id="avg-star-3" class="bi bi-star"></i><i id="avg-star-4" class="bi bi-star"></i><i id="avg-star-5" class="bi bi-star"></i> <%= @reviews.length %>  reviews
+  <br>
+  <img src="/o2-studios.jpg" class="card-img-top mt-2" alt="..." style="height: 12rem; width: 24rem; ">
+  
+  <p class="mt-4">
+  Description: <%= @studio.description %>
+  </p>
+
+  <h3>New Review:</h3>
+  <%= form_with model:[@studio, @studio.reviews.build] do |form| %>
+    Stars:
+    <i id="star-1" class="bi bi-star"></i>
+    <i id="star-2" class="bi bi-star"></i>
+    <i id="star-3" class="bi bi-star"></i>
+    <i id="star-4" class="bi bi-star"></i>
+    <i id="star-5" class="bi bi-star"></i>
+
+    <div class="mb-3">
+      <%= form.hidden_field :stars %>
+      <% @review.errors.full_messages_for(:stars).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= form.label :detail, class: "form-label" %>:<br>
+      <%= form.text_area :detail, class: "form-control", rows: 3 %>
+      <% @review.errors.full_messages_for(:detail).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+      <%= form.submit class: "btn btn-primary mt-2" %>
+    </div>
+  <% end %>
+
+  <h3>Reviews:</h3>
+  <% if @reviews %>
+    <% @reviews.each do |review| %>
+      <p class="mt-4">
+        Stars: <%= review.stars %> </br>
+        Detail: <%= review.detail %>
+      </p>
+    <% end %>
+  <% end %>
+
+</div>
+
+<script defer>
+
+  let starIds = ["star-1", "star-2", "star-3", "star-4", "star-5"];
+  let avgStarIds = ["avg-star-1", "avg-star-2", "avg-star-3", "avg-star-4", "avg-star-5"];
+
+  function clearStar(starId) {
+    let starEle = document.getElementById(starId);
+    starEle.classList.remove("bi-star-fill");
+    starEle.classList.add("bi-star");
+  }
+
+  function fillStar(starId) {
+    let starEle = document.getElementById(starId);
+    starEle.classList.remove("bi-star");
+    starEle.classList.add("bi-star-fill");
+  }
+
+  function clearStars(starIds) {
+    for (var starId of starIds) {
+      clearStar(starId);
+    }
+  }
+
+  function fillStars(numOfStars) {
+    clearStars(starIds);
+    for (let i=0; i < numOfStars; i++) {
+      let starId = "star-" + (i+1)
+      fillStar(starId);
+    }
+    document.getElementById("review_stars").value = numOfStars;
+  }
+
+  function fillAvgStars(numOfStars) {
+    clearStars(avgStarIds);
+    for (let i=0; i < numOfStars; i++) {
+      let starId = "avg-star-" + (i+1)
+      fillStar(starId);
+    }
+  }
+
+  function setupReviewFormStarListeners() {
+    for (let starId of starIds) {
+      let star = document.getElementById(starId);
+      star.addEventListener("click", function() {
+        let numOfStars = starId.substring(starId.indexOf("-") + 1);
+        fillStars(numOfStars);
+      });
+    }
+  }
+  setupReviewFormStarListeners();
+  fillAvgStars(<%= @avg_stars %>);
+
+</script>

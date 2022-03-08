@@ -6,29 +6,27 @@
                 <div class="text-center text-white">
                     <h1 class="mb-5">Search dance studios around Australia!</h1>
 
-                    <!--
+
                     <%= form_with url: "/search", method: :get do |form| %>
-                        <%= form.label :query, "Search for:" %>
-                        <%= form.text_field :query %>
-                        <%= form.label :style, "Style" %>
-                        <%= form.select :style, ["Allstyles", "Hip Hop", "Ballet", "Bollywood"], {}, class: "form-select" %>
-                        <%= form.submit "Search", class: "btn btn-primary btn-lg disabled" %>
+                      <div class="input-group">
+                        <input placeholder="Name" type="text" name="name_query" id="name_query" class="form-control" style="display: inline; width: auto;">
+                        <!-- style -->
+                        <select name="style" id="style" class="form-select" style="display: inline; width: auto;">
+                          <option value="all">All Styles</option>
+                          <% @styles.each do |style| %>
+                          <option value=<%= style.id %>> <%= style.name %> </option>
+                          <% end %>
+                        </select>                        
+                        <!-- city -->
+                        <select name="city" id="city" class="form-select" style="display: inline; width: auto;">
+                          <option value="all">All Cities</option>
+                          <% @distinct_studio_cities.each do |studio_city| %>
+                          <option value="<%= studio_city.city %>"> <%= studio_city.city %> </option>
+                          <% end %>
+                        </select>
+                        <input type="submit" name="commit" value="Search" class="btn btn-primary form-control" data-disable-with="Search" style="display: inline; width: auto;">
+                      </div>
                     <% end %>
-                    -->
-
-
-                    <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row">
-                            <div class="col">
-                                <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Dance Studio" data-sb-validations="required,email" />
-                                <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                            </div>
-                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Search</button></div>
-                        </div>
-                    </form>
-
                 </div>
             </div>
         </div>
